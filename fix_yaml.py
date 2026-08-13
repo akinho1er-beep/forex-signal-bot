@@ -1,4 +1,9 @@
-name: Forex Signal Bot - Scan M5
+"""Script pour corriger le fichier YAML GitHub Actions."""
+import os
+
+os.makedirs(".github/workflows", exist_ok=True)
+
+yaml_content = """name: Forex Signal Bot - Scan M5
 
 on:
   schedule:
@@ -42,3 +47,9 @@ jobs:
           MAX_RETRY_DELAY: 300
           NOTIFY_AFTER_ERRORS: 3
         run: python scan_once.py
+"""
+
+with open(".github/workflows/forex-scan.yml", "w", encoding="utf-8") as f:
+    f.write(yaml_content)
+
+print("YAML ecrit correctement !")
