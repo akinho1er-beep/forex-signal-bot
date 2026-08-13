@@ -1,0 +1,44 @@
+﻿name: Forex Signal Bot - Scan M5
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Scan markets
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DATA_SOURCE: yfinance
+          FOREX_PAIRS: ${{ secrets.FOREX_PAIRS }}
+          OTC_ENABLED: true
+          OTC_PAIRS: OTC_EURUSD,OTC_GBPUSD,OTC_USDJPY,OTC_AUDUSD,OTC_EURGBP,OTC_GBPJPY
+          TIMEFRAME: 5m
+          EMA_PERIOD: 20
+          RSI_PERIOD: 14
+          BB_PERIOD: 20
+          BB_STD: 2
+          SCAN_INTERVAL: 300
+          TIMEZONE_OFFSET: 1
+          CANDLE_OFFSET_SECONDS: 2
+          MAX_CONSECUTIVE_ERRORS: 10
+          BASE_RETRY_DELAY: 30
+          MAX_RETRY_DELAY: 300
+          NOTIFY_AFTER_ERRORS: 3
+        run: python scan_once.py
