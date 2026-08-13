@@ -1,0 +1,36 @@
+[Unit]
+Description=Forex Signal Bot - Analyse technique et alertes Telegram
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=forexbot
+Group=forexbot
+WorkingDirectory=/opt/forex_signal_bot
+ExecStart=/opt/forex_signal_bot/venv/bin/python main.py
+Restart=always
+RestartSec=30
+StartLimitBurst=5
+StartLimitIntervalSec=300
+
+# Gestion des erreurs
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=forex-bot
+
+# Variables d'environnement
+EnvironmentFile=/opt/forex_signal_bot/.env
+
+# Sécurité
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/forex_signal_bot/logs
+
+# Limites de ressources
+MemoryLimit=512M
+CPUQuota=50%
+
+[Install]
+WantedBy=multi-user.target

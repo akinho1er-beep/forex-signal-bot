@@ -1,0 +1,21 @@
+# ============================================================
+# Dépendances du Bot de Signaux Forex
+# ============================================================
+
+# Core
+python-dotenv>=1.0.0
+requests>=2.31.0
+
+# Données de marché
+yfinance>=0.2.31
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Analyse technique
+# (Indicateurs calculés manuellement — pas besoin de pandas-ta)
+
+# Planification / boucle
+schedule>=1.2.0
+
+# Logging
+colorlog>=6.7.0

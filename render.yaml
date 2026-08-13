@@ -1,0 +1,32 @@
+# Render Blueprint — Déploiement Cloud gratuit / pas cher
+# https://render.com/docs/blueprint-spec
+
+services:
+  - type: worker
+    name: forex-signal-bot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      - key: TELEGRAM_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false
+      - key: DATA_SOURCE
+        value: yfinance
+      - key: FOREX_PAIRS
+        value: "EURUSD=X,GBPUSD=X,AUDJPY=X,USDJPY=X,GBPJPY=X,EURGBP=X"
+      - key: TIMEFRAME
+        value: "5m"
+      - key: EMA_PERIOD
+        value: "50"
+      - key: RSI_PERIOD
+        value: "14"
+      - key: BB_PERIOD
+        value: "20"
+      - key: BB_STD
+        value: "2"
+    # Plan gratuit (750 heures/mois)
+    plan: free
