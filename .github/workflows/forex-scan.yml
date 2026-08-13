@@ -24,9 +24,9 @@ jobs:
       - name: Scan markets
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_CHAT_ID: ${{{ secrets.TELEGRAM_CHAT_ID }}
           DATA_SOURCE: yfinance
-          FOREX_PAIRS: ${{ secrets.FOREX_PAIRS }}
+          FOREX_PAIRS: ${{{ secrets.FOREX_PAIRS }}
           OTC_ENABLED: true
           OTC_PAIRS: OTC_EURUSD,OTC_GBPUSD,OTC_USDJPY,OTC_AUDUSD,OTC_EURGBP,OTC_GBPJPY
           TIMEFRAME: 5m
