@@ -1,4 +1,4 @@
-﻿"""
+"""
 SCAN UNIQUE - Pour GitHub Actions
 Ce script fait UN seul scan de toutes les paires,
 envoie les signaux sur Telegram, puis s'arrete.
